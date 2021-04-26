@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int calcular_s1(int M1, int m1) 
+{
+    for ( int t1 = 0; t1 < M1; t1++ ) 
+    {
+        for ( int s1 = 0; s1 < m1; s1++ ) 
+        {
+            if ( s1 * M1 - 1 == t1 * m1 ) 
+            {
+                printf("s1 = %d\n", s1);
+            }
+        }
+    }
+
+}
+
+int calcular_s2(int M2, int m2)
+{
+    for ( int t2 = 0; t2 < M2; t2++ ) 
+    {
+        for ( int s2 = 0; s2 < m2; s2++ ) 
+        {
+            if ( s2 * M2 - 1 == t2 * m2 ) 
+            {
+                printf("s2 = %d\n", s2);
+            }
+        }
+    }
+}
+
+int calcular_s3(int M3, int m3)
+{
+    for ( int t3 = 0; t3 < M3; t3++ ) 
+    {
+        for ( int s3 = 0; s3 < m3; s3++ ) 
+        {
+            if ( s3 * M3 - 1 == t3 * m3 ) 
+            {
+                printf("s3 = %d\n", s3);
+            }
+        }
+    }
+}
+
+int mdc(int m1, int m2)
+{
+    int r;
+
+    while(r != 0)
+    {
+        r = m1 % m2;
+        m1 = m2;
+        m2 = r;
+    }
+    return m1;
+}
+
+int main() 
+{
+    int m1, m2, m3 = 0;
+
+    printf("Digite os valores de m1, m2, e m3 respectivamente!\n");
+    scanf("%d", &m1);
+    scanf("%d", &m2);
+    scanf("%d", &m3);
+
+
+    int M = m1 * m2 * m3;
+
+    float M1 = M / m1;
+    float M2 = M / m2;
+    float M3 = M / m3;
+
+    int minimo_divisor = mdc(m1, m2);
+    int coprimo = mdc(minimo_divisor, m3);
+
+    int x0, x, r1, r2, r3;
+
+    printf("Digite os valores de r1, r2, e r3 respectivamente!\n");
+    scanf("%d%d%d", &r1, &r2, &r3);
+
+    if(coprimo == 1)
+    {
+        x0 = (M1 * calcular_s1((int)M1, m1) * r1) + (M2 * calcular_s2((int)M2, m2) * r2) + (M3 * calcular_s1((int)M3, m3) * r3);
+
+        x = x0 % M;
+
+        printf("A solução única é: %d\n", x);
+    }
+    else
+    {
+        printf("Os Valores digitados de m1, m2 e m3 não são coprimos!\n");
+    }
+
+    return 0;
+}
